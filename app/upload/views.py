@@ -1,5 +1,9 @@
 from django.shortcuts import render
 from django.core.files.storage import FileSystemStorage
+from rest_framework import viewsets, filters
+
+from .serializers import FoodSerializer
+from .models import Food
 
 
 def image_upload(request):
@@ -13,3 +17,10 @@ def image_upload(request):
             "image_url": image_url
         })
     return render(request, "upload.html")
+
+
+class FoodViewSet(viewsets.ModelViewSet):
+    queryset = Food.objects.all()
+    serializer_class = FoodSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['name']
