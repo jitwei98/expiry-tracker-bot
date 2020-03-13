@@ -4,3 +4,5 @@ __pycache
 .env.dev
 .env.prod
 .env.prod.db
+
+.idea
