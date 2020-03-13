@@ -6,3 +6,5 @@ __pycache
 .env.prod.db
 
 .idea
+staticfiles/admin
+staticfiles/rest_framework
