@@ -5,9 +5,9 @@
 
         CRUD on the list of food
 
-1. GET `/api/notify?item={item_name}`
+1. GET `/api/notify?item={item_name}&chat_id={chat_id}`
 
-        Call this endpoint to prompt user for an expiry date for food with <item_name> on Telegram
+        Call this endpoint to prompt user (identified by the chat_id) for an expiry date for food with <item_name> on Telegram
 
 1. GET `/api/expiry`
 
