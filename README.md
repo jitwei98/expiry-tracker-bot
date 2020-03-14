@@ -1,5 +1,24 @@
 # Dockerizing Django with Postgres, Gunicorn, and Nginx
 
+## API Endpoints
+1. GET, POST `/api/food`
+
+        CRUD on the list of food
+
+1. GET `/api/notify?item={item_name}`
+
+        Call this endpoint to prompt user for an expiry date for food with <item_name> on Telegram
+
+1. GET `/api/expiry`
+
+        Get the latest expiry date (d-m-yyyy) from user (manual input), default to 3 days after today
+
+1. GET `/api/set-expiry?date={date_string}`
+
+        Set expiry date to <date_string> 
+
+Note: Remember to `POST` the complete Food object (with the expiry date) to `/api/food`
+
 ## Want to learn how to build this?
 
 Check out the [post](https://testdriven.io/dockerizing-django-with-postgres-gunicorn-and-nginx).
