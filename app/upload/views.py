@@ -32,6 +32,7 @@ def notify_user_about_missing_expiry_date(request):
     if not item_name:
         return Response({'message': 'item not specified'}, status=status.HTTP_204_NO_CONTENT)
 
+    # TODO: Change the hardcoded chat id
     chat_id = '392671187'
     notification_text = 'Please /setExpiry for {}'.format(item_name)
     send_msg_url = 'https://api.telegram.org/bot{bot_token}/sendMessage?chat_id={chat_id}&text={notification_text}'.format(
