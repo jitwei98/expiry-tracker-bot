@@ -1,4 +1,4 @@
-# Dockerized Django App with Postgres, Gunicorn, and Nginx
+# Grocery expiry tracker
 
 ### API Endpoints
 GET, POST `/api/food`
