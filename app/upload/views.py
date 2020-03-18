@@ -8,6 +8,7 @@ from rest_framework import viewsets, filters, status, views
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
+from .expiry_date_stub import EXPIRY_DATE_DICTIONARY
 from .serializers import FoodSerializer
 from .models import Food
 
@@ -74,6 +75,23 @@ class FoodViewSet(viewsets.ModelViewSet):
     serializer_class = FoodSerializer
     filter_backends = [filters.SearchFilter]
     search_fields = ['name']
+
+    def create(self, request, *args, **kwargs):
+        modified_request_data = request.data.copy()
+
+        key = request.data['name']
+        days_to_expiry = EXPIRY_DATE_DICTIONARY.get(key)
+        if not days_to_expiry:
+            days_to_expiry = 3
+
+        modified_request_data['expiry_date'] = (datetime.datetime.today() + datetime.timedelta(days=days_to_expiry)).date()
+
+
+        serializer = self.get_serializer(data=modified_request_data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
     
     # def create(self, request, *args, **kwargs):
     #     if request.data['expiry_date'] == '':
