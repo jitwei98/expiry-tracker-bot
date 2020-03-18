@@ -9,7 +9,7 @@ GET, POST `/api/food`
 ### Tunneling with ngrok
 Download [ngrok](https://ngrok.com) to host the api from your computer.
 ```shell script
-./ngrok http 1337 -host-header='localhost:1337
+./ngrok http 1337 -host-header='localhost:1337'
 ```
 
 ### Notification using crontab
