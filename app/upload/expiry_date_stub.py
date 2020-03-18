@@ -93,7 +93,6 @@ EXPIRY_DATE_DICTIONARY = {
     'Zucchini': 14,
 
     'Corn': 5,
-    # 'Milk': 7,
     'Snowpeas': 4,
     'White-Mushroom': 14,
 }
