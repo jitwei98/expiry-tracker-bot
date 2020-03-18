@@ -1,32 +1,25 @@
-# Dockerizing Django with Postgres, Gunicorn, and Nginx
+# Dockerized Django App with Postgres, Gunicorn, and Nginx
 
-## API Endpoints
-1. GET, POST `/api/food`
+### API Endpoints
+GET, POST `/api/food`
+- CRUD on the list of food.
+- When inserting new food into the api, the api will give an estimated expiry date based on the food inserted. 
 
-        CRUD on the list of food
 
-1. GET `/api/notify?item={item_name}&chat_id={chat_id}`
+### Tunneling with ngrok
+Download [ngrok](https://ngrok.com) to host the api from your computer.
+```shell script
+./ngrok http 1337 -host-header='localhost:1337
+```
 
-        Call this endpoint to prompt user (identified by the chat_id) for an expiry date for food with <item_name> on Telegram
+### Notification using crontab
+```shell script
+$ crontab -e
 
-1. GET `/api/expiry`
+# Noify users of food expiring in the next 3 days
+0 8 * * * python manage.py notify_users
+```
 
-        Get the latest expiry date (d-m-yyyy) from user (manual input), default to 3 days after today
-
-1. GET `/api/set-expiry?date={date_string}`
-
-        Set expiry date to <date_string> 
-
-Note: Remember to `POST` the complete Food object (with the expiry date) to `/api/food`
-
-## Tunneling with ngrok
-    ./ngrok http 1337 -host-header='localhost:1337'
-
-## Want to learn how to build this?
-
-Check out the [post](https://testdriven.io/dockerizing-django-with-postgres-gunicorn-and-nginx).
-
-## Want to use this project?
 
 ### Development
 
@@ -54,3 +47,10 @@ Uses gunicorn + nginx.
     ```
 
     Test it out at [http://localhost:1337](http://localhost:1337). No mounted folders. To apply changes, the image must be re-built.
+
+
+### Supplementary files
+1. `hfg.ipynb` : Jupyter notebook for training the models
+1. `telegram-bot/bot_script.py` : Script for the Telegram Bot 
+1. `pushButtonToCapture.py` Script for Raspberry Pi + Camera
+1.  [GroceryStoreDataset](https://github.com/marcusklasson/GroceryStoreDataset/tree/master/dataset/train)
