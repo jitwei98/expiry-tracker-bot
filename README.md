@@ -19,6 +19,9 @@
 
 Note: Remember to `POST` the complete Food object (with the expiry date) to `/api/food`
 
+## Tunneling with ngrok
+    ./ngrok http 1337 -host-header='localhost:1337'
+
 ## Want to learn how to build this?
 
 Check out the [post](https://testdriven.io/dockerizing-django-with-postgres-gunicorn-and-nginx).
