@@ -26,6 +26,7 @@ print(response.json())       # dict of the new object
 DELETE
 ```python
 import requests
+import urllib.parse
 
 
 url = 'http://localhost:1337/api/food/'
@@ -38,7 +39,7 @@ print(response.json())        # [{'id': 2, 'name': 'Banana', 'expiry_date': '202
 id = response.json()[0]['id']
 
 # Delete using the id
-delete_url = url + str(id)
+delete_url = urllib.parse.urljoin(url, str(id))
 response = requests.delete(delete_url)
 
 print(response.status_code)  # 204 No Content
