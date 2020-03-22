@@ -1,3 +1,5 @@
+import os
+
 from telegram.ext import (Updater, ConversationHandler, CommandHandler, MessageHandler, Filters)
 import logging
 import datetime
@@ -9,6 +11,8 @@ API_ENDPOINT = "http://localhost:8000/api/food"
 # NOTIFICATION_API_ENDPOINT = "http://localhost:8000/api/notify"
 SET_EXPIRY_API_ENDPOINT = "http://localhost:8000/api/set-expiry"
 # API_KEY = "XXXXXXXXXXXXXXXXX"
+
+TELEGRAM_BOT_TOKEN = os.environ.get('TELEGRAM_BOT_TOKEN')
 
 #start logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
@@ -95,7 +99,7 @@ def error(update, context):
 	logger.warning('Caused error "%s"', context.error)
 
 def main():
-    updater = Updater(token='1115783483:AAE2pJLsDCIc0x4HosJmrFKuUI0uw_yePtI', use_context = True)
+    updater = Updater(token=TELEGRAM_BOT_TOKEN, use_context = True)
     dp = updater.dispatcher
 
     conv_handler= ConversationHandler(
